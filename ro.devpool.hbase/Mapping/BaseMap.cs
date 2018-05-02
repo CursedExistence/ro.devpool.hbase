@@ -38,33 +38,9 @@ namespace ro.devpool.hbase.Mapping
             return mapper;
         }
 
-        //protected ListMapper<T> Property<T>(Expression<Func<TEntity, IList<T>>> predicate) where T : class
-        //{
-        //    var mapper = new ListMapper<T>(predicate.ExtractNameAndType());
-
-        //    _mappers.Add(mapper);
-        //    return mapper;
-        //}
-
         protected ListMapper<T> Property<T>(Expression<Func<TEntity, IEnumerable<T>>> predicate) where T : class
         {
             var mapper = new ListMapper<T>(predicate.ExtractNameAndType());
-
-            _mappers.Add(mapper);
-            return mapper;
-        }
-
-        protected DictionaryMapper Property(Expression<Func<TEntity, IDictionary<string, string>>> predicate)
-        {
-            var mapper = new DictionaryMapper(predicate.ExtractNameAndType());
-
-            _mappers.Add(mapper);
-            return mapper;
-        }
-
-        protected DictionaryMapper Property<TValue>(Expression<Func<TEntity, IDictionary<string, TValue>>> predicate)
-        {
-            var mapper = new DictionaryMapper(predicate.ExtractNameAndType());
 
             _mappers.Add(mapper);
             return mapper;

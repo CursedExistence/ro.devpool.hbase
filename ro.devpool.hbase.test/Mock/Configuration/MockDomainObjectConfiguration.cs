@@ -7,6 +7,9 @@ namespace ro.devpool.hbase.test.Mock.Configuration
     {
         public MockDomainObjectConfiguration()
         {
+            Namespace("Mock");
+            Table("MockUsers");
+            RowKey(x=> x.Name);
             Property(x => x.Name).FromColumnFamily(Maps.MockDomainObject.TestColumnFamily).WithColumn(Maps.MockDomainObject.NameColumn);
             Property(x => x.Age).FromColumnFamily(Maps.MockDomainObject.TestColumnFamily).WithColumn(Maps.MockDomainObject.AgeColumn);
             Property(x => x.Age).FromColumnFamily(Maps.MockDomainObject.TestColumnFamily).WithColumn(Maps.MockDomainObject.AgeColumn);
