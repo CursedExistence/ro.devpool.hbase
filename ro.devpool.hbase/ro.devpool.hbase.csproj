@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage />
+    <AssemblyVersion>0.0.0.5</AssemblyVersion>
+    <FileVersion>0.0.0.5</FileVersion>
+    <Authors>Denis Susan</Authors>
+    <Company />
+    <Product>HBase Object Mapper</Product>
+    <PackageId>ro.devpool.hbase</PackageId>
+    <Version>0.0.5-alpha</Version>
+    <Description>A object to row / row to object mapper for HBase.
+Note: This project is currently unstable and should not be used in a production environment!</Description>
+    <AssemblyName>HBaseObjectMapper</AssemblyName>
+    <RootNamespace>ro.devpool.hbase</RootNamespace>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/CursedExistence/ro.devpool.hbase</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/CursedExistence/ro.devpool.hbase</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="apache-thrift-netcore" Version="0.9.3.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net471'">
+    <PackageReference Include="thrift-csharp" Version="0.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+    <PackageReference Include="FastMember" Version="1.1.0" />
+  </ItemGroup>
+</Project>

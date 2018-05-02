@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ro.devpool.hbase/v15
+/ro.devpool.hbase/bin/Debug
+/ro.devpool.hbase/obj
+/ro.devpool.hbase.test/bin/Debug/netcoreapp2.0
+/ro.devpool.hbase.test/obj
