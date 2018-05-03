@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using ro.devpool.hbase.Connection;
 using ro.devpool.hbase.Interfaces.Commands;
 using ro.devpool.hbase.Interfaces.Configuration;
+using ro.devpool.hbase.Interfaces.Connection;
 using ro.devpool.hbase.Models;
 using ro.devpool.hbase.Models.Apache;
 using ro.devpool.hbase.Transform;
@@ -23,13 +23,13 @@ namespace ro.devpool.hbase.Commands
         private readonly ClassMap _map;
         private readonly IList<TEntity> _entities;
         private readonly IList<string> _descriptors;
-        private readonly ConnectionPool _pool;
+        private readonly IConnectionPool _pool;
 
         #endregion
 
         #region Constructors
 
-        internal PutCommand(IHBaseConfiguration configuration, ConnectionPool pool, ClassMap classMap)
+        internal PutCommand(IHBaseConfiguration configuration, IConnectionPool pool, ClassMap classMap)
         {
             _tableName = $"{classMap.GetNamespace()}{configuration.ThriftTablePrefix}{classMap.TableName}".GetBytes();
             _map = classMap;

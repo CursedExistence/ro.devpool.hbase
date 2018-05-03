@@ -4,7 +4,7 @@ using ro.devpool.hbase.Management;
 
 namespace ro.devpool.hbase.Connection
 {
-    internal class ConnectionPool
+    internal class ConnectionPool : IConnectionPool
     {
         /*
          * TODO: switch from permisive pool to restrictive pool with an x number of throttling

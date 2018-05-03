@@ -155,7 +155,10 @@ namespace ro.devpool.hbase.Transform
 
         private void EntireCfAsObject(ListMap map, ObjectAccessor accessor, Dictionary<byte[], TCell> input, ConcurrentDictionary<string, long> ts)
         {
-            var targetedCells = input.Where(x => x.Key.StartsWith(map.ColumnFamily.GetBytes()));
+            var targetedCells = input.Where(x => x.Key.StartsWith(map.ColumnFamily.GetBytes())).ToList();
+
+            if (targetedCells.Count <= 0)
+                return;
 
             var ltype = typeof(List<>).MakeGenericType(map.ActingObjectType);
 
@@ -173,8 +176,6 @@ namespace ro.devpool.hbase.Transform
                     GenerateValue(map.ColumnValue.type, targetedCell.Value.Value.GetString());
 
                 ts.TryAdd(targetedCell.Key.GetString(), targetedCell.Value.Timestamp);
-
-                //TODO: HOOK for timestamp 
 
                 list.Add(target);
             }

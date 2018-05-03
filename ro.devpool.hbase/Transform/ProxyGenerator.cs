@@ -26,7 +26,7 @@ namespace ro.devpool.hbase.Transform
             var entityType = typeof(TEntity);
             var ts = typeof(ITimestamp);
 
-            var floatingType = _floatingModule.DefineType(entityType.Name, TypeAttributes.Class | TypeAttributes.Public);
+            var floatingType = _floatingModule.DefineType(entityType.FullName, TypeAttributes.Class | TypeAttributes.Public);
             floatingType.SetParent(entityType);
             floatingType.AddInterfaceImplementation(ts);
 

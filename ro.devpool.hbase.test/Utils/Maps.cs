@@ -7,6 +7,9 @@
             public const string TestColumnFamily = "t";
             public const string NameColumn = "Name";
             public const string AgeColumn = "Age";
+            public const string TableName = "MockUsers";
+            public const string Namespace = "Mock";
+            public const string ListColumnFamily = "l";
         }
 
         public class MockSubclassObject

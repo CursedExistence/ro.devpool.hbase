@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using ro.devpool.hbase.Connection;
 using ro.devpool.hbase.Interfaces.Commands;
 using ro.devpool.hbase.Interfaces.Configuration;
+using ro.devpool.hbase.Interfaces.Connection;
 using ro.devpool.hbase.Models;
 using ro.devpool.hbase.Models.Apache;
 using ro.devpool.hbase.Utils;
@@ -23,7 +23,7 @@ namespace ro.devpool.hbase.Commands
         private readonly List<string> _descriptors = new List<string>();
         private int _batchSize = 1000;
         private readonly ClassMap _map;
-        private readonly ConnectionPool _pool;
+        private readonly IConnectionPool _pool;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace ro.devpool.hbase.Commands
             throw new Exception("Command not designed to be used this way");
         }
 
-        internal DeleteCommand(IHBaseConfiguration configuration, ConnectionPool pool, ClassMap classMap)
+        internal DeleteCommand(IHBaseConfiguration configuration, IConnectionPool pool, ClassMap classMap)
         {
             _map = classMap;
             _pool = pool;

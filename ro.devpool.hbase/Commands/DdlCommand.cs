@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ro.devpool.hbase.Connection;
 using ro.devpool.hbase.Interfaces.Commands;
+using ro.devpool.hbase.Interfaces.Connection;
 using ro.devpool.hbase.Models;
 using ro.devpool.hbase.Models.Apache;
 using ro.devpool.hbase.Utils;
@@ -17,7 +17,7 @@ namespace ro.devpool.hbase.Commands
     {
         #region Constructors
 
-        internal DdlCommand(ConnectionPool pool)
+        internal DdlCommand(IConnectionPool pool)
         {
             _pool = pool;
         }
@@ -28,7 +28,7 @@ namespace ro.devpool.hbase.Commands
 
         private readonly byte[] _tableName;
       
-        private readonly ConnectionPool _pool;
+        private readonly IConnectionPool _pool;
 
         #endregion
 

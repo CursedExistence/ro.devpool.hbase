@@ -5,12 +5,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using ro.devpool.hbase.Connection;
 using ro.devpool.hbase.Exceptions;
 using ro.devpool.hbase.Filters;
 using ro.devpool.hbase.Interfaces;
 using ro.devpool.hbase.Interfaces.Commands;
 using ro.devpool.hbase.Interfaces.Configuration;
+using ro.devpool.hbase.Interfaces.Connection;
 using ro.devpool.hbase.Models;
 using ro.devpool.hbase.Models.Apache;
 using ro.devpool.hbase.Transform;
@@ -69,7 +69,7 @@ namespace ro.devpool.hbase.Commands
         private int _limit = 100000;
         private IScanFilterBuild _filter;
         private readonly ClassMap _map;
-        private readonly ConnectionPool _pool;
+        private readonly IConnectionPool _pool;
 
         #endregion
 
@@ -80,7 +80,7 @@ namespace ro.devpool.hbase.Commands
             throw new Exception("Command not designed to be used this way");
         }
 
-        internal ScanCommand(IHBaseConfiguration configuration, ConnectionPool pool, ClassMap map)
+        internal ScanCommand(IHBaseConfiguration configuration, IConnectionPool pool, ClassMap map)
         {
             _tableName = $"{map.GetNamespace()}{configuration.ThriftTablePrefix}{map.TableName}".GetBytes();
             

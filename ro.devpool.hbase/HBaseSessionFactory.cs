@@ -15,6 +15,7 @@ using ro.devpool.hbase.Models;
 using ro.devpool.hbase.Transform;
 
 [assembly:InternalsVisibleTo("ro.devpool.hbase.test")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 namespace ro.devpool.hbase
 {
@@ -27,18 +28,17 @@ namespace ro.devpool.hbase
         DIContainer IHbaseSessionFactoryContext.Container => _container;
 
         private readonly DIContainer _container = new DIContainer();
-        private readonly ConnectionPool _connectionPool;
 
 
         public HBaseSessionFactory()
         {
-            _connectionPool = new ConnectionPool(_container);
+            var connectionPool = new ConnectionPool(_container);
             _generator = new ProxyGenerator();
 
             _container.Register(() => _configuration);
             _container.Register<IHbaseSessionFactoryContext>(() => this);
             _container.Register<IHBaseSession, HBaseSession>(ConstructionMode.Internal);
-            _container.Register(() => _connectionPool, ConstructionMode.Internal);
+            _container.Register<IConnectionPool>(() => connectionPool, ConstructionMode.Internal);
             _container.Register<IThriftClient, ThriftClient>(ConstructionMode.Internal);
             _container.Register(typeof(IScanCommand<>),typeof(ScanCommand<>), ConstructionMode.Internal);
             _container.Register(typeof(IGetCommand<>),typeof(GetCommand<>), ConstructionMode.Internal);
