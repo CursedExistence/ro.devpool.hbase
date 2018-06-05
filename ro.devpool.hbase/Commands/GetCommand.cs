@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using ro.devpool.hbase.Exceptions;
 using ro.devpool.hbase.Interfaces.Commands;
 using ro.devpool.hbase.Interfaces.Configuration;
 using ro.devpool.hbase.Interfaces.Connection;
@@ -114,7 +115,7 @@ namespace ro.devpool.hbase.Commands
         {
             var result = ExtractResult();
 
-            if (result.Count > 1) throw new Exception($"Expected 1 result, got {result.Count}");
+            if (result.Count > 1) throw new CommandException($"Expected 1 result, got {result.Count}");
             if (result.Count == 0) return default(TEntity);
 
             var generator = new EntityGenerator<TEntity>(_map);
@@ -156,7 +157,7 @@ namespace ro.devpool.hbase.Commands
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    if (x.Result.Count > 1) throw new Exception($"Expected 1 result, got {x.Result.Count}");
+                    if (x.Result.Count > 1) throw new CommandException($"Expected 1 result, got {x.Result.Count}");
                     if (x.Result.Count == 0) return default(TEntity);
                     var generator = new EntityGenerator<TEntity>(_map);
 

@@ -114,10 +114,21 @@ namespace ro.devpool.hbase.Commands
                 var visitor = new MapVisitor(_map);
                 visitor.Visit(predicate);
 
-                //var maps = visitor.ExposeMap();
-                //foreach (var map in maps) _columns.Add(map.FullColumnKey);
                 _columns.Add(visitor.ExposeMap().FullColumnKey);
             }
+
+            return this;
+        }
+
+        public IScanCommand<TEntity> FetchColumns<T>(Expression<Func<TEntity, IEnumerable<T>>>predicate,
+            params string[] columns)
+        {
+            var visitor = new MapVisitor(_map);
+            visitor.Visit(predicate);
+
+            var map = visitor.ExposeMap();
+
+            _columns.AddRange(columns.Select(x=> $"{map.ColumnFamily}:{x}"));
 
             return this;
         }
@@ -158,7 +169,7 @@ namespace ro.devpool.hbase.Commands
         {
             var result = ExtractResult();
 
-            if (result.Count > 1) throw new Exception($"Expected 1 result, got {result.Count}");
+            if (result.Count > 1) throw new CommandException($"Expected 1 result, got {result.Count}");
             if (result.Count == 0) return default(TEntity);
 
             var generator = new EntityGenerator<TEntity>(_map);
@@ -196,7 +207,7 @@ namespace ro.devpool.hbase.Commands
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    if (x.Result.Count > 1) throw new Exception($"Expected 1 result, got {x.Result.Count}");
+                    if (x.Result.Count > 1) throw new CommandException($"Expected 1 result, got {x.Result.Count}");
                     if (x.Result.Count == 0) return default(TEntity);
                     var generator = new EntityGenerator<TEntity>(_map);
 
