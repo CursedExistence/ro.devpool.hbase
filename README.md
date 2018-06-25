@@ -120,19 +120,20 @@ If you want to map an entire row then create a new class that extends ClassMap<T
     
    ```csharp
        public class UserConfig : ClassMap<User>
-    {
-        public UserConfig()
         {
-            Table("ai_Users");
-            RowKey(x=> x.Email);
+            public UserConfig()
+            {
+                Table("ai_Users");
+                RowKey(x=> x.Email);
 
-            Property(x => x.Name).FromColumnFamily("u").WithColumn("Name");
-            Property(x => x.IsActive).FromColumnFamily("u").WithColumn("IsActive");
+                Property(x => x.Name).FromColumnFamily("u").WithColumn("Name");
+                Property(x => x.IsActive).FromColumnFamily("u").WithColumn("IsActive");
             
-//Note: this transforms a column family to a IEnumerable<T> if you specify what property is the column name and what property is the column value.
-            Property(x => x.Roles).EntireCFAsObject("r", x => x.Name, x => x.Id); 
-            Property(x => x.Permissions).EntireCFAsObject("p", x => x.Name, x => x.Id);
-        
+                //Note: this transforms a column family to a IEnumerable<T> if you specify what property is the column name and what property is the column value.
+                Property(x => x.Roles).EntireCFAsObject("r", x => x.Name, x => x.Id); 
+                Property(x => x.Permissions).EntireCFAsObject("p", x => x.Name, x => x.Id);
+            }
+        }
    ```
 
 
