@@ -16,7 +16,7 @@ namespace ro.devpool.hbase.test.Filters
 
             var build = filter.ToFilterBuild().Build();
 
-            Assert.True(build.Equals($"PrefixFilter ('{key}')"));
+            Assert.Equal(build,$"PrefixFilter ('{key}')");
         }
 
         [Fact]

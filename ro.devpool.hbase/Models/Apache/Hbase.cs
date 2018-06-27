@@ -1771,7 +1771,7 @@ namespace ro.devpool.hbase.Models.Apache {
         public class Processor : TProcessor
         {
             protected Dictionary<string, Hbase.Processor.ProcessFunction> processMap_ = new Dictionary<string, Hbase.Processor.ProcessFunction>();
-            private Hbase.Iface iface_;
+            private readonly Hbase.Iface iface_;
 
             public Processor(Hbase.Iface iface)
             {

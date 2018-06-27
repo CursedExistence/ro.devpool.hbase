@@ -23,14 +23,20 @@ namespace ro.devpool.hbase.Utils
 
                     break;
                 case ListMap listMap:
-                    var t = new PropertyMap
+                    maps.Add(new PropertyMap
                     {
                         ColumnFamily = listMap.ColumnFamily,
-                        //ColumnName = listMap.ColumnName.name,
                         Name = listMap.Name,
                         Type = listMap.Type
-                    };
-                    maps.Add(t);
+                    });
+                    break;
+                case DictionaryMap dictionaryMap:
+                    maps.Add(new PropertyMap
+                    {
+                        ColumnFamily = dictionaryMap.ColumnFamily,
+                        Name = dictionaryMap.Name,
+                        Type = dictionaryMap.Type
+                    });
                     break;
             }
 

@@ -7,3 +7,4 @@
 /ro.devpool.hbase/obj
 /ro.devpool.hbase.test/bin/Debug/netcoreapp2.0
 /ro.devpool.hbase.test/obj
+/.vs

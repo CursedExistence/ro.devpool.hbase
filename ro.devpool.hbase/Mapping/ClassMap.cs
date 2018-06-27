@@ -43,12 +43,12 @@ namespace ro.devpool.hbase.Mapping
         {
             ValidateRowKey(RowKeyKind.Simple);
 
-            var prop = predicate.ExtractNameAndType();
+            var (name, type) = predicate.ExtractNameAndType();
 
             var map = new RowKeyMap
             {
-                Name = prop.name,
-                Type = prop.type
+                Name = name,
+                Type = type
             };
 
             _map.RowKey = new RowKey(RowKeyKind.Simple, new List<RowKeyMap> {map});
@@ -58,12 +58,12 @@ namespace ro.devpool.hbase.Mapping
         {
             ValidateRowKey(RowKeyKind.Simple);
 
-            var prop = predicate.ExtractNameAndType();
+            var (name, type) = predicate.ExtractNameAndType();
 
             var map = new RowKeyMap
             {
-                Name = prop.name,
-                Type = prop.type
+                Name = name,
+                Type = type
             };
 
             _map.RowKey = new RowKey(RowKeyKind.Simple, new List<RowKeyMap> {map});
@@ -77,12 +77,12 @@ namespace ro.devpool.hbase.Mapping
 
             foreach (var predicate in predicates)
             {
-                var prop = predicate.ExtractNameAndType();
+                var (name, type) = predicate.ExtractNameAndType();
 
                 var map = new RowKeyMap
                 {
-                    Name = prop.name,
-                    Type = prop.type
+                    Name = name,
+                    Type = type
                 };
                 maps.Add(map);
             }

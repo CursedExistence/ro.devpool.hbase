@@ -17,8 +17,8 @@ namespace ro.devpool.hbase.test.Mock.Configuration
             Property(x => x.Number).FromColumnFamily(Maps.MockDomainObject.TestColumnFamily).WithColumn("Number");
 
             Property(x => x.RandomList).EntireCFAsObject(Maps.MockDomainObject.ListColumnFamily, k => k.Column, v => v.Value);
-           // Property(x=> x.RandomDictionary).FromColumnFamily(Maps.MockDomainObject.TestColumnFamily);
-           // Property(x=> x.RandomEnumerable).EntireCFAsObject(Maps.MockDomainObject.TestColumnFamily, k => k.Name, v => v.Age);
+            Property(x=> x.RandomDictionary).FromColumnFamily(Maps.MockDomainObject.TestColumnFamily);
+            Property(x=> x.RandomEnumerable).EntireCFAsObject(Maps.MockDomainObject.TestColumnFamily, k => k.Column, v => v.Value);
         }
     }
 }

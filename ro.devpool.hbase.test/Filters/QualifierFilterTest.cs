@@ -11,16 +11,11 @@ namespace ro.devpool.hbase.test.Filters
 {
     public class QualifierFilterTest
     {
-        private ClassMap _map;
+        private readonly ClassMap _map;
         public QualifierFilterTest()
         {
             var configuration = new MockDomainObjectConfiguration();
             _map = configuration.ExposeClassMap();
-        }
-
-        public void Test()
-        {
-            var filter = new QualifierFilter<MockDomainObject>(_map);
         }
 
         [Theory, CombinatorialData]

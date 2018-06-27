@@ -10,7 +10,7 @@ namespace ro.devpool.hbase.test.Filters
 {
     public class FilterContextTest
     {
-        private ClassMap _map;
+        private readonly ClassMap _map;
         public FilterContextTest()
         {
             var configuration = new MockDomainObjectConfiguration();

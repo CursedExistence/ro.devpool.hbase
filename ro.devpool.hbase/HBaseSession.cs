@@ -44,7 +44,7 @@ namespace ro.devpool.hbase
 
         public IDdlCommand<TEntity> DDL<TEntity>() where TEntity : class
         {
-            return _container.Retrieve<IDdlCommand<TEntity>>();
+            return _container.Retrieve<IDdlCommand<TEntity>>(_context.GetMap<TEntity>());
         }
 
         public ITimestampCommand<TEntity> Timestamp<TEntity>(TEntity entity) where TEntity : class

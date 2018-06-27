@@ -40,7 +40,7 @@ namespace ro.devpool.hbase.Commands
 
             if (!_endKey.IsNullOrEmpty()) scan.StopRow = _endKey.GetBytes();
 
-            if (_columns != null) scan.Columns = _columns.Select(x => x.GetBytes()).ToList();
+            if (_columns != null) scan.Columns = _columns.Distinct().Select(x => x.GetBytes()).ToList();
             return scan;
         }
 
@@ -107,7 +107,7 @@ namespace ro.devpool.hbase.Commands
             return this;
         }
 
-        public IScanCommand<TEntity> FetchColumns(params Expression<Func<TEntity, object>>[] predicates)
+        public IScanCommand<TEntity> FetchColumns<T>(params Expression<Func<TEntity, T>>[] predicates)
         {
             foreach (var predicate in predicates)
             {
@@ -120,7 +120,7 @@ namespace ro.devpool.hbase.Commands
             return this;
         }
 
-        public IScanCommand<TEntity> FetchColumns<T>(Expression<Func<TEntity, IEnumerable<T>>>predicate,
+        public IScanCommand<TEntity> FetchColumns<T>(Expression<Func<TEntity, IEnumerable<T>>> predicate,
             params string[] columns)
         {
             var visitor = new MapVisitor(_map);

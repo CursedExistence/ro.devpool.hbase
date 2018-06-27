@@ -155,14 +155,26 @@ namespace ro.devpool.hbase.test.Commands
 
             command.FetchColumns(x => x.Name);
 
+
+            command.FetchColumns(x => x.RandomDictionary, "manele");
+            command.FetchColumns(x => x.RandomEnumerable, "manele");
+
             var actual = command.List();
 
             var test = actual.SingleOrDefault(x => x.Name == "test");
             var foo = actual.SingleOrDefault(x => x.Name == "Foo");
 
-            Assert.Equal(_expectedResults[0].Name, test?.Name);
-            Assert.Equal(_expectedResults[1].Name, foo?.Name);
+            var expectedTest = _expectedResults.SingleOrDefault(x => x.Name == "test");
+            var expectedFoo = _expectedResults.SingleOrDefault(x => x.Name == "Foo");
 
+           
+
+            Assert.Equal(expectedTest?.Name, test?.Name);
+            Assert.Equal(expectedFoo?.Name, foo?.Name);
+
+
+            Assert.Null(test.Address);
+            Assert.Null(foo.Address);
 
         }
 
@@ -176,6 +188,7 @@ namespace ro.devpool.hbase.test.Commands
             Assert.True(CheckEntities(_expectedResults, actual));
         }
 
+        [Fact]
         public void ScanCommand_Test_Start_End_row()
         {
             var command = new ScanCommand<MockDomainObject>(_config, _pool, _map);

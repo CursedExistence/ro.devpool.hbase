@@ -16,6 +16,8 @@ namespace ro.devpool.hbase.Transform
         public ProxyGenerator()
         {
             var name = new AssemblyName("FloatingDomain");
+
+            
             var floatingAssembly = AssemblyBuilder.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
             _floatingModule = floatingAssembly.DefineDynamicModule("FloatingDomain");
             _dictionaryConstructor = typeof(Dictionary<string, long>).GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, new Type[] { }, new ParameterModifier[] { });

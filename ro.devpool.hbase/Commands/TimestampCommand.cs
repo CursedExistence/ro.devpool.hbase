@@ -11,8 +11,8 @@ namespace ro.devpool.hbase.Commands
 {
     public class TimestampCommand<TEntity> : ITimestampCommand<TEntity> where TEntity : class
     {
-        private TEntity _entity;
-        private ClassMap _map;
+        private readonly TEntity _entity;
+        private readonly ClassMap _map;
 
         internal TimestampCommand(TEntity entity, ClassMap map)
         {

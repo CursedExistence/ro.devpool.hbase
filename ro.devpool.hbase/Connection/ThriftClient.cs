@@ -51,11 +51,11 @@ namespace ro.devpool.hbase.Connection
 
         private Hbase.Client _connection { get; }
 
-        private double _timestamp;
+        private readonly double _timestamp;
 
-        private TSocket _thriftSocket;
-        private TBufferedTransport _thriftTransport;
-        private TBinaryProtocol _thriftProtocol;
+        private readonly TSocket _thriftSocket;
+        private readonly TBufferedTransport _thriftTransport;
+        private readonly TBinaryProtocol _thriftProtocol;
 
         #endregion
 

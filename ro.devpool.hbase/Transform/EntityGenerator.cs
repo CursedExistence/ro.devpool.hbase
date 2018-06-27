@@ -23,7 +23,7 @@ namespace ro.devpool.hbase.Transform
         {
             _map = map;
             if (!(map.Generator is IActivator<TEntity> gen))
-                throw new Exception($"Cannot generate object of type {map.Name}");
+                throw new Exception($"Cannot generate object of type {nameof(TEntity)}, no valid generators found.");
 
             _activator = gen;
         }

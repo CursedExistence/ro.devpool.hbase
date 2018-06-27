@@ -10,9 +10,11 @@ namespace ro.devpool.hbase.Mapping.Mappers
 
         public PrimitiveMapper((string propertyName, Type type) t)
         {
-            _map = new PropertyMap();
-            _map.Name = t.propertyName;
-            _map.Type = t.type;
+            _map = new PropertyMap
+            {
+                Name = t.propertyName,
+                Type = t.type
+            };
         }
 
         IMap IMapper.ExposeMap()

@@ -98,7 +98,7 @@ namespace ro.devpool.hbase.Models.Apache {
         public class Processor : TProcessor
         {
             protected Dictionary<string, SharedService.Processor.ProcessFunction> processMap_ = new Dictionary<string, SharedService.Processor.ProcessFunction>();
-            private SharedService.Iface iface_;
+            private readonly SharedService.Iface iface_;
 
             public Processor(SharedService.Iface iface)
             {

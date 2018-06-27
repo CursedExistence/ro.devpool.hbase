@@ -17,9 +17,11 @@ namespace ro.devpool.hbase.Commands
     {
         #region Constructors
 
-        internal DdlCommand(IConnectionPool pool)
+        internal DdlCommand(IConnectionPool pool, ClassMap map)
         {
             _pool = pool;
+            _map = map;
+            _tableName = map.TableName.GetBytes();
         }
 
         #endregion
@@ -29,6 +31,8 @@ namespace ro.devpool.hbase.Commands
         private readonly byte[] _tableName;
       
         private readonly IConnectionPool _pool;
+
+        private readonly ClassMap _map;
 
         #endregion
 
